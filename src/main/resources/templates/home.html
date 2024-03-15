@@ -4,37 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to SpringBank</title>
   <link th:href="@{/css/style.css}" rel="stylesheet"/>
+  <title>SpringBank</title>
 </head>
-
 <body>
+<!-- Top Bar with Login and Register Buttons -->
 <div class="top-bar">
   <div sec:authorize="!isAuthenticated()">
-    <p>
-      <a href="/login">Log In</a>
-      or
-      <a href="/register">(Register)</a>
-    </p>
+    <p><a href="/login" class="rounded-button">Log in</a>
+      <a href="/register" class="rounded-button">Register</a></p>
   </div>
-
   <div sec:authorize="isAuthenticated()">
-    <p>
-      Welcome, <span th:text="${#authentication.name}"></span>!
-      <a href="/logout">(Log Out)</a>
-    </p>
+    <p>Welcome, <span th:text="${#authentication.name}"></span>!
+    <a href="/logout" class="rounded-button">Log out</a></p>
   </div>
 </div>
 
-<div class="flag-background center-content">
-  <h1>Welcome to SpringBank</h1>
-  <img src="/img/SpringBankLogo.png" width="256" height="256">
+<!-- Logo and Menu -->
+<div class="logo-menu">
+  <img src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
+  <h1>SpringBank</h1>
+  <nav>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/transfer">Transfer</a></li>
+      <li><a href="/history">History</a></li>
+    </ul>
+  </nav>
 </div>
 
-<div class="menu">
-  <img src="/img/SpringBankLogo.png" width="128" height="128">
-  <p class="logo">SpringBank</p>
+<!-- Offers -->
+<div class="account-tiles">
+  <a href="/offers/basic-savings" class="tile">
+    <img src="/img/basic_savings.png" alt="Basic Savings Account Logo">
+    <h2>Basic Savings</h2>
+    <p>Open a Basic Savings account with competitive interest rates.</p>
+  </a>
+  <a href="/offers/premium-checking" class="tile">
+    <img src="/img/premium_checking.png" alt="Account 2">
+    <h2>Premium Checking</h2>
+    <p>Get exclusive benefits with our Premium Checking account.</p>
+  </a>
+  <a href="/offers/investment-accounts" class="tile">
+    <img src="/img/investment_account.png" alt="Account 3">
+    <h2>Investment Accounts</h2>
+    <p>Explore investment options tailored to your financial goals.</p>
+  </a>
+  <a href="/offers/business-accounts" class="tile">
+    <img src="/img/business_accounts.png" alt="Account 4">
+    <h2>Business Accounts</h2>
+    <p>Manage your business finances efficiently with our Business accounts.</p>
+  </a>
 </div>
 
+<!-- Standard Company Footer -->
+<footer>
+  <p>© 2024 SpringBank. All rights reserved.</p>
+</footer>
 </body>
 </html>
