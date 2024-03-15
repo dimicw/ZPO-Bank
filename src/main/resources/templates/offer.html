@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/css/style.css}" rel="stylesheet"/>
+  <title th:text="${title}">Offer</title>
+</head>
+<body>
+<!-- Top Bar with Login and Register Buttons -->
+<div class="top-bar">
+  <div sec:authorize="!isAuthenticated()">
+    <p><a href="/login" class="rounded-button">Log in</a>
+      <a href="/register" class="rounded-button">Register</a></p>
+  </div>
+  <div sec:authorize="isAuthenticated()">
+    <p>Welcome, <span th:text="${#authentication.name}"></span>!
+      <a href="/logout" class="rounded-button">Log out</a></p>
+  </div>
+</div>
+
+<!-- Logo and Menu -->
+<div class="logo-menu">
+  <img src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
+  <h1>SpringBank</h1>
+  <nav>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/transfer">Transfer</a></li>
+      <li><a href="/history">History</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="offer">
+  <h1><span th:text="${title}">Default Title</span></h1>
+  <div class="description">
+    <img th:src="@{/img/{image}(image=${image})}" alt="Offer Image" width="256" height="256">
+    <p><span th:text="${description}">Default description</span></p>
+  </div>
+  <a href="/not-implemented" class="rounded-button big">Open account</a>
+</div>
+</body>
+</html>
