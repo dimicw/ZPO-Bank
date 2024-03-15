@@ -11,12 +11,12 @@
 <!-- Top Bar with Login and Register Buttons -->
 <div class="top-bar">
   <div sec:authorize="!isAuthenticated()">
-    <p><a href="/login" class="rounded-button">Log in</a>
-      <a href="/register" class="rounded-button">Register</a></p>
+    <button onclick="location.href = '/login';">Log in</button>
+    <button onclick="location.href = '/register';">Register</button>
   </div>
   <div sec:authorize="isAuthenticated()">
-    <p>Welcome, <span th:text="${#authentication.name}"></span>!
-      <a href="/logout" class="rounded-button">Log out</a></p>
+    Welcome, <span th:text="${#authentication.name}"></span>!
+    <button onclick="location.href = '/logout';">Log out</button>
   </div>
 </div>
 
@@ -38,7 +38,7 @@
     <img th:src="@{/img/{image}(image=${image})}" alt="Offer Image" width="256" height="256">
     <p><span th:text="${description}">Default description</span></p>
   </div>
-  <a href="/not-implemented" class="rounded-button big">Open account</a>
+  <button onclick="location.href = '/not-implemented';" class="big">Open account</button>
 </div>
 </body>
 </html>
