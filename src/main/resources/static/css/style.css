@@ -1,0 +1,59 @@
+:root {
+    --deep-sea: #11313c;
+    --medium-sea: #22516b;
+    --steel: #c0d3d6;
+
+    --leaf: #5db43f;
+    --mint: #aad584;
+    --dirt: #c3914c;
+}
+
+
+
+html, body, p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 48px;
+    margin: 0;
+    padding: 0;
+    color: var(--deep-sea);
+}
+
+.flag-background {
+    width: 100%;
+    height: auto;
+    background-color: var(--steel);
+}
+
+.center-content {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-bar {
+    width: 100%;
+    height: auto;
+    background-color: var(--medium-sea);
+    text-align: right;
+    color: var(--steel);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.top-bar a{
+    color: var(--steel);
+    text-decoration: underline;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    color: var(--deep-sea);
+}

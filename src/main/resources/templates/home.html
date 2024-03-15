@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spring Boot App</title>
+  <title>Welcome to SpringBank</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
+
 <body>
-<h1>Welcome to Our Application</h1>
+<div class="top-bar">
+  <div sec:authorize="!isAuthenticated()">
+    <p>
+      <a href="/login">Log In</a>
+      or
+      <a href="/register">(Register)</a>
+    </p>
+  </div>
 
-<!-- Conditionally render login and registration links -->
-<div sec:authorize="!isAuthenticated()">
-  <p>Please choose an option:</p>
-  <ul>
-    <li><a href="/login">Log In</a></li>
-    <li><a href="/register">Register</a></li>
-  </ul>
+  <div sec:authorize="isAuthenticated()">
+    <p>
+      Welcome, <span th:text="${#authentication.name}"></span>!
+      <a href="/logout">(Log Out)</a>
+    </p>
+  </div>
 </div>
 
-<!-- Show a welcome message if the user is logged in -->
-<div sec:authorize="isAuthenticated()">
-  <p>Welcome, <span th:text="${#authentication.name}"></span>!</p>
-  <p><a href="/logout">Log Out</a></p>
+<div class="flag-background center-content">
+  <h1>Welcome to SpringBank</h1>
+  <img src="/img/SpringBankLogo.png" width="256" height="256">
 </div>
+
+<div class="menu">
+  <img src="/img/SpringBankLogo.png" width="128" height="128">
+  <p class="logo">SpringBank</p>
+</div>
+
 </body>
 </html>
