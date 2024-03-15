@@ -1,5 +1,7 @@
-package dimi.zpo.bank3;
+package dimi.zpo.bank3.services;
 
+import dimi.zpo.bank3.entities.UserEntity;
+import dimi.zpo.bank3.repositories.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

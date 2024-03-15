@@ -1,4 +1,4 @@
-package dimi.zpo.bank3;
+package dimi.zpo.bank3.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ public class SecurityConfig {
 
         return http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/register", "/").permitAll()
+                        .requestMatchers("/register", "/", "/home", "/offers/*").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())

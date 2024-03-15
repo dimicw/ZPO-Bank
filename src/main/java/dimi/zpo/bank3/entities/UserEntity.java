@@ -1,4 +1,4 @@
-package dimi.zpo.bank3;
+package dimi.zpo.bank3.entities;
 
 import jakarta.persistence.*;
 

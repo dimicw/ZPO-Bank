@@ -1,5 +1,7 @@
-package dimi.zpo.bank3;
+package dimi.zpo.bank3.controllers;
 
+import dimi.zpo.bank3.entities.UserEntity;
+import dimi.zpo.bank3.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
