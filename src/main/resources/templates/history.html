@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title th:text="${title}">Confirmation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
+</head>
+<body>
+<!-- Top Bar with Login and Register Buttons -->
+<div class="top-bar">
+    <div sec:authorize="!isAuthenticated()">
+        <button onclick="location.href = '/login';">Log in</button>
+        <button onclick="location.href = '/register';">Register</button>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <a>Welcome, <span th:text="${#authentication.name}"></span>!  </a>
+        <button onclick="location.href = '/logout';">Log out</button>
+    </div>
+</div>
+
+<!-- Logo and Menu -->
+<div class="logo-menu">
+    <a href="/home">
+        <img href="/home" src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
+        <h1>SpringBank</h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/transfer">Transfer</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- History -->
+<h1>Transfer History</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Account</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transfer : ${transfers}">
+        <td th:text="${transfer.fromAccount == '1234' ? 'Outgoing' : 'Incoming'}"></td>
+        <td th:text="${transfer.amount}"></td>
+        <td th:text="${transfer.fromAccount == '1234' ? transfer.toAccount : transfer.fromAccount}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<footer>
+    <p>© 2024 SpringBank. All rights reserved.</p>
+</footer>
+</html>
