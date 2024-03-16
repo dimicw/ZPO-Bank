@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>Transfer</title>
+</head>
+<body>
+<!-- Top Bar with Login and Register Buttons -->
+<div class="top-bar">
+    <div sec:authorize="!isAuthenticated()">
+        <button onclick="location.href = '/login';">Log in</button>
+        <button onclick="location.href = '/register';">Register</button>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        Welcome, <span th:text="${#authentication.name}"></span>!
+        <button onclick="location.href = '/logout';">Log out</button>
+    </div>
+</div>
+
+<!-- Logo and Menu -->
+<div class="logo-menu">
+    <a href="/home">
+        <img href="/home" src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
+        <h1>SpringBank</h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/transfer">Transfer</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Transfer -->
+<div class="transfer">
+    <h2>Register</h2>
+    <form action="#" th:action="@{/transfer}" method="post">
+        <label for="fromAccount">From Account:</label><br>
+        <select id="fromAccount" name="fromAccount" required>
+            <option th:each="account : ${accountOptions}" th:value="${account}" th:text="${account}"></option>
+        </select><br>
+        <label for="toAccount">To Account:</label><br>
+        <input type="text" id="toAccount" name="toAccount" required><br>
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" step="0.01" required> PLN<br>
+        <input type="submit" value="Transfer">
+    </form>
+</div>
