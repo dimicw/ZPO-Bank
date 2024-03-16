@@ -44,6 +44,6 @@ public class TransferController {
 
         transferRepository.save(transfer);
 
-        return "redirect:/login";
+        return "redirect:/transfer/success";
     }
 }
