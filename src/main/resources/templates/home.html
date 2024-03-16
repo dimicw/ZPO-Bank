@@ -16,15 +16,17 @@
     <button onclick="location.href = '/register';">Register</button>
   </div>
   <div sec:authorize="isAuthenticated()">
-    Welcome, <span th:text="${#authentication.name}"></span>!
+    <a>Welcome, <span th:text="${#authentication.name}"></span>!  </a>
     <button onclick="location.href = '/logout';">Log out</button>
   </div>
 </div>
 
 <!-- Logo and Menu -->
 <div class="logo-menu">
-  <img src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
-  <h1>SpringBank</h1>
+  <a href="/home">
+    <img href="/home" src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
+    <h1>SpringBank</h1>
+  </a>
   <nav>
     <ul>
       <li><a href="/home">Home</a></li>

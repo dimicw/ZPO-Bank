@@ -11,6 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -18,46 +19,49 @@ body {
 }
 
 button {
-    background-color: var(--leaf-green);
+    background-color: var(--deep-sea);
     border: none;
     border-radius: 12px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     text-align: center:
     display: inline-block;
     cursor: pointer;
     margin-left: 5px;
     margin-right: 5px;
-    color: var(--deep-sea);
-   font-size: 16px;
-   font-weight: bold;
-   text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 button.big {
     font-size: 24px;
+    color: var(--deep-sea);
     background-color: var(--leaf-green);
 }
 
 
 .top-bar {
     background-color: var(--deep-sea);
-    color: var(--steel);
     text-align: right;
-    padding: 10px;
+    padding: 5px;
 }
 
-.top-bar p{
-    font-size: 20px;
-    color: var(--steel);
+.top-bar a{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
     text-align: right;
-    padding: 10px;
 }
 
 
 .logo-menu {
     text-align: center;
     background: linear-gradient(90deg, white, var(--steel), white);
+}
 
+.logo-menu a {
+    text-decoration: none;
 }
 
 .logo-menu img {
@@ -101,17 +105,27 @@ button.big {
     margin: 0 auto;
 }
 
-
 .tile {
     background-color: var(--steel);
-    padding: 20px;
+
     text-align: center;
     text-decoration: none;
     color: var(--deep-sea);
+    border: 16px solid var(--deep-sea);
 }
 
 .tile img {
     max-width: 100%;
+}
+
+.tile h2 {
+    font-size: 28px;
+    padding: 5px 20px;
+}
+
+.tile p {
+    font-size: 16px;
+    padding: 20px;
 }
 
 
