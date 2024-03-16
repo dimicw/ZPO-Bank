@@ -16,6 +16,9 @@
 
 body {
     background: linear-gradient(90deg, white, var(--soft-mint), white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 button {
@@ -166,4 +169,5 @@ footer {
     color: var(--steel);
     text-align: center;
     padding: 10px;
+    margin-top: auto;
 }
