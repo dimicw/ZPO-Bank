@@ -38,6 +38,8 @@ button.big {
     font-size: 24px;
     color: var(--deep-sea);
     background-color: var(--leaf-green);
+    padding: 10px 20px;
+    margin-top: 5px;
 }
 
 
