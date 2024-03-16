@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <title th:text="${title}">Confirmation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
 </head>
 <body>
 <!-- Top Bar with Login and Register Buttons -->
@@ -15,7 +16,7 @@
         <button onclick="location.href = '/register';">Register</button>
     </div>
     <div sec:authorize="isAuthenticated()">
-        Welcome, <span th:text="${#authentication.name}"></span>!
+        <a>Welcome, <span th:text="${#authentication.name}"></span>!  </a>
         <button onclick="location.href = '/logout';">Log out</button>
     </div>
 </div>

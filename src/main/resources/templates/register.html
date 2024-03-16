@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <title>Register</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
 </head>
 <body>
+<!-- Top Bar with Login and Register Buttons -->
+<div class="top-bar">
+    <div sec:authorize="!isAuthenticated()">
+        <button onclick="location.href = '/login';">Log in</button>
+        <button onclick="location.href = '/register';">Register</button>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <a>Welcome, <span th:text="${#authentication.name}"></span>!  </a>
+        <button onclick="location.href = '/logout';">Log out</button>
+    </div>
+</div>
+
+<!-- Logo and Menu -->
+<div class="logo-menu">
+    <a href="/home">
+        <img href="/home" src="/img/logo.png" alt="SpringBank Logo" width="256" height="256">
+        <h1>SpringBank</h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/transfer">Transfer</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Registration -->
 <h2>Register</h2>
 <form action="#" th:action="@{/register}" method="post">
     <label for="username">Username:</label><br>
