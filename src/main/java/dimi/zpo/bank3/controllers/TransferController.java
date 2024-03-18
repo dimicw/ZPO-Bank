@@ -1,8 +1,10 @@
 package dimi.zpo.bank3.controllers;
 
 import dimi.zpo.bank3.entities.AccountEntity;
+import dimi.zpo.bank3.entities.AccountTypeEntity;
 import dimi.zpo.bank3.entities.TransferEntity;
 import dimi.zpo.bank3.repositories.AccountRepository;
+import dimi.zpo.bank3.repositories.AccountTypeRepository;
 import dimi.zpo.bank3.repositories.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,10 +31,10 @@ public class TransferController {
     public String showTransferForm(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         List<AccountEntity> accounts = accountRepository.findByOwnerId(auth.getName());
-        List<String> accountNumbers = new ArrayList<>();
-        for (AccountEntity account : accounts) accountNumbers.add(account.getNumber());
-
-        model.addAttribute("accountOptions", accountNumbers);
+        List<AccountTypeEntity> accountTypes = accountTypeRepository.findAll();
+        
+        model.addAttribute("accountOptions", accounts);
+        model.addAttribute("accountTypes", accountTypes);
         return "transfer";
     }
 
@@ -48,4 +49,6 @@ public class TransferController {
 
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private AccountTypeRepository accountTypeRepository;
 }

@@ -40,9 +40,13 @@
 <div class="transfer">
     <h2>Transfer funds</h2>
     <form action="#" th:action="@{/transfer}" method="post">
-        <label for="fromAccount">From Account:</label><br>
+        <label for="fromAccount">From Account:</label>
         <select id="fromAccount" name="fromAccount" required>
-            <option th:each="account : ${accountOptions}" th:value="${account}" th:text="${account}"></option>
+            <option th:each="account : ${accountOptions}" th:value="${account.number}">
+                <th:block th:each="type : ${accountTypes}">
+                    <th:block th:if="${type.id == account.accountType}" th:text="${type.name}"></th:block>
+                </th:block>
+            </option>
         </select><br>
         <label for="toAccount">To Account:</label><br>
         <input type="text" id="toAccount" name="toAccount" required><br>
