@@ -43,16 +43,18 @@
     <tr>
         <th>Date</th>
         <th>Type</th>
+        <th>From Account</th>
+        <th>To Account</th>
         <th>Amount</th>
-        <th>Account</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="transfer : ${transfers}">
         <td th:text="${transfer.date}"></td>
-        <td th:text="${transfer.fromAccount == '1234' ? 'Outgoing' : 'Incoming'}"></td>
+        <td th:text="${transfer.type}"></td>
+        <td th:text="${transfer.fromAccount}"></td>
+        <td th:text="${transfer.toAccount}"></td>
         <td th:text="${transfer.amount}"></td>
-        <td th:text="${transfer.fromAccount == '1234' ? transfer.toAccount : transfer.fromAccount}"></td>
     </tr>
     </tbody>
 </table>
