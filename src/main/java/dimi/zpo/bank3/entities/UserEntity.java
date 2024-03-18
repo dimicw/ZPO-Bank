@@ -7,23 +7,23 @@ import jakarta.persistence.*;
 @Table(name = "user")
 public class UserEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Integer id;*/
+    @Id
     private String username;
     private String password;
 
 
     // getters and setters
 
-    public Integer getId() {
+    /*public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
+    }*/
 
     public String getUsername() {
         return username;

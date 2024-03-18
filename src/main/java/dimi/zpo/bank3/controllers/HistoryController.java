@@ -29,7 +29,7 @@ public class HistoryController {
         //model.addAttribute("transfers", transfers);
 
         List<HistoryEntry> entries = historyService.generateEntries(field, direction);
-        model.addAttribute("transfers", entries);
+        model.addAttribute("entries", entries);
 
         return "history";
     }

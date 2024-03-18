@@ -49,12 +49,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="transfer : ${transfers}">
-        <td th:text="${transfer.date}"></td>
-        <td th:text="${transfer.type}"></td>
-        <td th:text="${transfer.fromAccount}"></td>
-        <td th:text="${transfer.toAccount}"></td>
-        <td th:text="${transfer.amount}"></td>
+    <tr th:each="entry : ${entries}">
+        <td th:text="${entry.date}"></td>
+        <td th:text="${entry.type}"></td>
+        <td th:text="${entry.fromAccount}"></td>
+        <td th:text="${entry.toAccount}"></td>
+        <td th:text="${entry.amount}"></td>
     </tr>
     </tbody>
 </table>

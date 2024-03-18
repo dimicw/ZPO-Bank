@@ -1,9 +1,15 @@
 package dimi.zpo.bank3.services;
 
+import dimi.zpo.bank3.entities.AccountEntity;
+import dimi.zpo.bank3.entities.AccountTypeEntity;
 import dimi.zpo.bank3.entities.HistoryEntry;
 import dimi.zpo.bank3.entities.TransferEntity;
+import dimi.zpo.bank3.repositories.AccountRepository;
+import dimi.zpo.bank3.repositories.AccountTypeRepository;
 import dimi.zpo.bank3.repositories.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -54,37 +60,51 @@ public class HistoryService {
     }
 
     public List<HistoryEntry> generateEntries(String field, Boolean direction) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<AccountEntity> accounts = accountRepository.findByOwnerId(auth.getName());
+        List<String> accountNumbers = new ArrayList<>();
+        for (AccountEntity account : accounts) accountNumbers.add(account.getNumber());
+
         List<HistoryEntry> entries = new ArrayList<>();
 
-        List<String> accountNumbers = new ArrayList<>();    //TODO
-        accountNumbers.add("1234");
-
-        for (String accountNumber : accountNumbers) {
-            String accountType = "test";    //TODO
-            List<TransferEntity> transfers = transferRepository.findByFromAccountOrToAccount(accountNumber, accountNumber);
+        for (AccountEntity account : accounts) {
+            String accountType = accountTypeRepository.findById(account.getAccountType()).get(0).getName();
+            List<TransferEntity> transfers = transferRepository.findByFromAccountOrToAccount(account.getNumber(), account.getNumber());
 
             for (TransferEntity transfer : transfers) {
-                String type, fromAccount, toAccount;
+                String type = "", fromAccount = "", toAccount = "";
+                Boolean isInternal = accountNumbers.contains(transfer.getFromAccount()) && accountNumbers.contains(transfer.getToAccount());
 
                 if (transfer.getFromAccount() == null) {
                     type = "Deposit";
                     fromAccount = "-";
                     toAccount = accountType;
-                } else if (transfer.getFromAccount().equals(accountNumber)) {
+                } else if (transfer.getFromAccount().equals(account.getNumber())) {
                     fromAccount = accountType;
-                    if (transfer.getToAccount() == null) {
-                        type = "Withdrawal";
-                        toAccount = "-";
+
+                    if(isInternal) {
+                        for (AccountEntity account2 : accounts)
+                            if (transfer.getToAccount() != null)
+                                if (transfer.getToAccount().equals(account2.getNumber()))
+                                    toAccount = accountTypeRepository.findById(account2.getAccountType()).get(0).getName();
+                        type = "Internal transfer";
                     } else {
-                        type = "Outgoing transfer";
-                        toAccount = transfer.getToAccount();
+                        if (transfer.getToAccount() == null) {
+                            type = "Withdrawal";
+                            toAccount = "-";
+                        } else {
+                            type = "Outgoing transfer";
+                            toAccount = transfer.getToAccount();
+                        }
                     }
-                } else {
+                } else if (!isInternal){
                     type = "Incoming transfer";
                     fromAccount = transfer.getFromAccount();
                     toAccount = accountType;
                 }
-                entries.add(new HistoryEntry(transfer.getDate(), type, fromAccount, toAccount, transfer.getAmount()));
+                
+                if(type != "")
+                    entries.add(new HistoryEntry(transfer.getDate(), type, fromAccount, toAccount, transfer.getAmount()));
             }
         }
         return sortByField(entries, field, direction);
@@ -92,4 +112,8 @@ public class HistoryService {
 
     @Autowired
     private TransferRepository transferRepository;
+    @Autowired
+    private AccountRepository accountRepository;
+    @Autowired
+    private AccountTypeRepository accountTypeRepository;
 }
