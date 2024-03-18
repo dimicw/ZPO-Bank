@@ -102,7 +102,7 @@ public class HistoryService {
                     fromAccount = transfer.getFromAccount();
                     toAccount = accountType;
                 }
-                
+
                 if(type != "")
                     entries.add(new HistoryEntry(transfer.getDate(), type, fromAccount, toAccount, transfer.getAmount()));
             }

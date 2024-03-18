@@ -21,6 +21,15 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--deep-sea);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 button {
     background-color: var(--deep-sea);
     border: none;
@@ -43,6 +52,46 @@ button.big {
     background-color: var(--leaf-green);
     padding: 10px 20px;
     margin-top: 5px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 100%;
+    min-width: 400px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: var(--deep-sea);
+    color: white;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid var(--medium-sea);
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: var(--soft-mint);
+}
+
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: var(--steel);
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--deep-sea);
 }
 
 
@@ -141,13 +190,6 @@ button.big {
     justify-content: center;
     max-width: 600px;
     margin: 0 auto;
-}
-
-.offer h1 {
-    font-size: 48px;
-    font-weight: bold;
-    color: var(--deep-sea);
-    margin: 20px;
 }
 
 .offer p {
