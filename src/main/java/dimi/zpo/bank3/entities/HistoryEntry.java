@@ -1,18 +1,16 @@
 package dimi.zpo.bank3.entities;
 
-import jakarta.persistence.Column;
-
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class HistoryEntry {
-    private Date date;
+    private LocalDateTime date;
     private String type;
     private String fromAccount;
     private String toAccount;
     private BigDecimal amount;
 
-    public HistoryEntry(Date date, String type, String fromAccount, String toAccount, BigDecimal amount) {
+    public HistoryEntry(LocalDateTime date, String type, String fromAccount, String toAccount, BigDecimal amount) {
         this.date = date;
         this.type = type;
         this.fromAccount = fromAccount;
@@ -20,11 +18,11 @@ public class HistoryEntry {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

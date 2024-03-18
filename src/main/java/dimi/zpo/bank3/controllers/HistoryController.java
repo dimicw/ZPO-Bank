@@ -23,10 +23,6 @@ public class HistoryController {
     public String historySorted (@PathVariable String field,
                                  @PathVariable Boolean direction,
                                  Model model) {
-        //String accountNumber = "1234";
-
-        //model.addAttribute("accountNumber", accountNumber);
-        //model.addAttribute("transfers", transfers);
 
         List<HistoryEntry> entries = historyService.generateEntries(field, direction);
         model.addAttribute("entries", entries);

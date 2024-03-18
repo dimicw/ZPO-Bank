@@ -3,12 +3,11 @@ package dimi.zpo.bank3.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.Comparator;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transfer")
-public class TransferEntity implements Comparator<TransferEntity> {
+public class TransferEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,12 +17,16 @@ public class TransferEntity implements Comparator<TransferEntity> {
     @Column(name = "to_account")
     private String toAccount;
     private BigDecimal amount;
-    private Date date;
+    private LocalDateTime date;
 
-    @Override
-    public int compare(TransferEntity transfer1, TransferEntity transfer2) {
-        // Compare by amount (ascending order)
-        return transfer1.getAmount().compareTo(transfer2.getAmount());
+    public TransferEntity() {
+    }
+
+    public TransferEntity(String fromAccount, String toAccount, BigDecimal amount) {
+        this.date = LocalDateTime.now();
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
+        this.amount = amount;
     }
 
     public Integer getId() {
@@ -58,11 +61,11 @@ public class TransferEntity implements Comparator<TransferEntity> {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

@@ -1,8 +1,12 @@
 package dimi.zpo.bank3.controllers;
 
+import dimi.zpo.bank3.entities.AccountEntity;
 import dimi.zpo.bank3.entities.TransferEntity;
-import dimi.zpo.bank3.entities.UserEntity;
+import dimi.zpo.bank3.repositories.AccountRepository;
 import dimi.zpo.bank3.repositories.TransferRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +28,12 @@ public class TransferController {
 
     @GetMapping("/transfer")
     public String showTransferForm(Model model) {
-        List<String> accounts = new ArrayList<>();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<AccountEntity> accounts = accountRepository.findByOwnerId(auth.getName());
+        List<String> accountNumbers = new ArrayList<>();
+        for (AccountEntity account : accounts) accountNumbers.add(account.getNumber());
 
-        accounts.add("1234");
-        accounts.add("6852");
-
-        model.addAttribute("accountOptions", accounts);
+        model.addAttribute("accountOptions", accountNumbers);
         return "transfer";
     }
 
@@ -37,13 +41,11 @@ public class TransferController {
     public String registerTransfer(@RequestParam String fromAccount,
                                    @RequestParam String toAccount,
                                    @RequestParam BigDecimal amount) {
-        TransferEntity transfer = new TransferEntity();
-        transfer.setFromAccount(fromAccount);
-        transfer.setToAccount(toAccount);
-        transfer.setAmount(amount);
-
-        transferRepository.save(transfer);
+        transferRepository.save(new TransferEntity(fromAccount, toAccount, amount));
 
         return "redirect:/transfer/success";
     }
+
+    @Autowired
+    private AccountRepository accountRepository;
 }
