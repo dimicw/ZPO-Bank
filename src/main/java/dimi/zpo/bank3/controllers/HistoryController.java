@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
@@ -24,19 +25,8 @@ import java.util.*;
 public class HistoryController {
 
     @GetMapping("/history")
-    public String history(Model model) {
-
-        String accountNumber = "1234";
-
-        List<TransferEntity> transfers = transferRepository.findByFromAccountOrToAccount(accountNumber, accountNumber);
-        //transfers = historyService.sortByField("amount", "1234");
-
-        //for (TransferEntity transfer : transfers) {}
-
-        model.addAttribute("accountNumber", accountNumber);
-        model.addAttribute("transfers", transfers);
-
-        return "history";
+    public RedirectView redirectToHome() {
+        return new RedirectView("/history/sort_by=date-desc=true");
     }
 
     @GetMapping("/history/sort_by={field}-desc={direction}")
