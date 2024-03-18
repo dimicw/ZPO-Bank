@@ -3,6 +3,7 @@ package dimi.zpo.bank3.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 @Entity
 @Table(name = "transfer")
@@ -16,6 +17,7 @@ public class TransferEntity {
     @Column(name = "to_account")
     private String toAccount;
     private BigDecimal amount;
+    private Date date;
 
     public Integer getId() {
         return id;
@@ -47,5 +49,13 @@ public class TransferEntity {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
