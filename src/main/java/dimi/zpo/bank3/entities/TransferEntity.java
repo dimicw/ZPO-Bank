@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Comparator;
 
 @Entity
 @Table(name = "transfer")
-public class TransferEntity {
+public class TransferEntity implements Comparator<TransferEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,6 +19,12 @@ public class TransferEntity {
     private String toAccount;
     private BigDecimal amount;
     private Date date;
+
+    @Override
+    public int compare(TransferEntity transfer1, TransferEntity transfer2) {
+        // Compare by amount (ascending order)
+        return transfer1.getAmount().compareTo(transfer2.getAmount());
+    }
 
     public Integer getId() {
         return id;
@@ -58,4 +65,6 @@ public class TransferEntity {
     public void setDate(Date date) {
         this.date = date;
     }
+
+
 }
