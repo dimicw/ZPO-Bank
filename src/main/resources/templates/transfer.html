@@ -9,9 +9,10 @@
 <div th:include="common :: top-bar"></div>
 <div th:include="common :: menu"></div>
 
-<!-- Transfer -->
-<div class="transfer">
+<!-- Transfer form -->
+<div class="form slim">
     <h2>Transfer funds</h2>
+    <hr class="margin">
     <form action="#" th:action="@{/transfer}" method="post">
         <label for="fromAccount">From Account:</label>
         <select id="fromAccount" name="fromAccount" required>
@@ -21,13 +22,24 @@
                 </th:block>
             </option>
         </select><br>
+
         <label for="toAccount">To Account:</label><br>
         <input type="text" id="toAccount" name="toAccount" required><br>
+
         <label for="amount">Amount:</label><br>
-        <input type="number" id="amount" name="amount" step="0.01" required> PLN<br>
-        <input type="submit" value="Transfer">
+        <div class="currency-container">
+            <input type="number" id="amount" name="amount" step="0.01" required>
+            <span class="currency">PLN</span>
+        </div>
+
+        <div class="center">
+            <button type="submit" class="big">Transfer</button>
+        </div>
     </form>
 </div>
+
+<!-- Script to show currency properly -->
+<script src="/js/currency.js"></script>
 
 </body>
 <footer>

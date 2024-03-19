@@ -2,7 +2,9 @@
 :root {
     --deep-sea: #11313c;
     --medium-sea: #22516b;
+    --light-steel: #daeaed;
     --steel: #c0d3d6;
+    --dark-steel: #a8babd;
     --leaf-green: #5db43f;
     --soft-mint: #e8ffe0;
 }
@@ -23,6 +25,12 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--deep-sea);
+}
+
 h2 {
     text-align: center;
     font-size: 48px;
@@ -30,6 +38,27 @@ h2 {
     color: var(--deep-sea);
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+h3 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--deep-sea);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+hr {
+  border: 1px solid var(--medium-sea);
+  margin-bottom: 5px;
+  width: 100%
 }
 
 footer {
@@ -60,10 +89,13 @@ button {
 
 button.big {
     font-size: 24px;
-    color: var(--deep-sea);
-    background-color: var(--leaf-green);
     padding: 10px 20px;
     margin-top: 5px;
+}
+
+button.green {
+    color: var(--deep-sea);
+    background-color: var(--leaf-green);
 }
 
 a.no-underline {
@@ -93,7 +125,8 @@ a.no-underline {
 }
 
 .pagination a.active {
-    background-color: var(--leaf-green);
+    color: white;
+    background-color: var(--deep-sea);
     border-radius: 5px;
 }
 
@@ -175,9 +208,6 @@ a.no-underline {
 }
 
 .logo-menu h1 {
-    font-size: 48px;
-    font-weight: bold;
-    color: var(--deep-sea);
     padding-bottom: 20px;
 }
 
@@ -246,14 +276,91 @@ a.no-underline {
 }
 
 .offer p {
+    margin: 20px;
     font-size: 26px;
     font-weight: bold;
     color: var(--deep-sea);
-    margin: 20px;
 }
 
 .offer .description {
-    display: flex; /* Create a flex container for the image and paragraph */
-    align-items: center; /* Center items horizontally */
-    margin: 20px; /* Adjust spacing */
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+
+/* forms */
+.form {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form.slim {
+    max-width: 400px;
+}
+
+.form.container {
+  padding: 16px;
+}
+
+.form input[type=text],
+.form input[type=password],
+.form input[type=number],
+.form select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: var(--light-steel);
+  color: var(--deep-sea);
+}
+
+.form input[type=text]:focus,
+.form input[type=password]:focus,
+.form input[type=number]:focus,
+.form select:focus {
+  background-color: var(--steel);
+  outline: none;
+}
+
+.form select {
+    font-weight: bold;
+}
+
+.form label {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--deep-sea);
+}
+
+.form hr.margin {
+  margin-bottom: 25px;
+}
+
+.form a {
+  color: var(--medium-sea);
+}
+
+.form button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.form .currency-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.form .currency {
+    position: absolute;
+    right: 35px;
+    top: 40%;
+    transform: translateY(-50%);
+    color: var(--dark-steel);
+    font-weight: bold;
 }

@@ -10,9 +10,11 @@
 <div th:include="common :: menu"></div>
 
 <!-- Confirmation -->
-<div class="">
-    <h2>Are you sure?</h2>
-    <form name="f" th:action="@{/logout}" method="post">
+<div class="form slim">
+    <h2>Log out</h2>
+    <hr>
+    <h3>Are you sure you want to log out?</h3>
+    <form class="center" th:action="@{/logout}" method="post">
         <button type="submit" class="big">Log out</button>
     </form>
 </div>
