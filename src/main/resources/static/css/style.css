@@ -7,6 +7,7 @@
     --soft-mint: #e8ffe0;
 }
 
+
 /* basic settings*/
 * {
     margin: 0;
@@ -38,6 +39,7 @@ footer {
     padding: 10px;
     margin-top: auto;
 }
+
 
 /* buttons*/
 button {
@@ -141,6 +143,7 @@ a.no-underline {
     border-bottom: 2px solid var(--deep-sea);
 }
 
+
 /* top bar */
 .top-bar {
     background-color: var(--deep-sea);
@@ -154,6 +157,7 @@ a.no-underline {
     color: white;
     text-align: right;
 }
+
 
 /* menu */
 .logo-menu {
@@ -169,7 +173,6 @@ a.no-underline {
     display: block;
     margin: 0 auto;
 }
-
 
 .logo-menu h1 {
     font-size: 48px;
@@ -196,6 +199,7 @@ a.no-underline {
     font-size: 36px;
     font-weight: bold;
 }
+
 
 /* tiles */
 .account-tiles {
@@ -229,6 +233,7 @@ a.no-underline {
     font-size: 16px;
     padding: 20px;
 }
+
 
 /* offer */
 .offer {
