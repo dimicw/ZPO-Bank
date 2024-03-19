@@ -32,7 +32,7 @@ public class TransferController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         List<AccountEntity> accounts = accountRepository.findByOwnerId(auth.getName());
         List<AccountTypeEntity> accountTypes = accountTypeRepository.findAll();
-        
+
         model.addAttribute("accountOptions", accounts);
         model.addAttribute("accountTypes", accountTypes);
         return "transfer";
