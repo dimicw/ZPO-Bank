@@ -18,7 +18,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/register", "/", "/home", "/offers/*",
-                                "/js/**", "/css/**", "/img/**").permitAll()
+                                "/error", "/js/**", "/css/**", "/img/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
