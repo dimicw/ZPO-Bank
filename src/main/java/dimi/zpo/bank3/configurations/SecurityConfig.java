@@ -1,6 +1,7 @@
 package dimi.zpo.bank3.configurations;
 
 import dimi.zpo.bank3.handlers.CustomAuthenticationSuccessHandler;
+import dimi.zpo.bank3.handlers.CustomLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -22,9 +23,16 @@ public class SecurityConfig {
                                 "/error", "/js/**", "/css/**", "/img/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(request -> request
-                        //.loginPage("/login")
+                        .loginPage("/login")
                         .successHandler(new CustomAuthenticationSuccessHandler())
-                        .permitAll())
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/home")
+                        .logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                )
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }

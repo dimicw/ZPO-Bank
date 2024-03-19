@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common :: head">
+    <title>Login</title>
+</head>
+<body>
+
+<!-- Top bar and menu -->
+<div th:include="common :: top-bar"></div>
+<div th:include="common :: menu"></div>
+
+<!-- Login form -->
+<div class="">
+    <h2>Login</h2>
+    <form name="f" th:action="@{/login}" method="post">
+        <div th:if="${param.error}" class="alert error">Invalid username or password</div>
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username"/><br>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password"/><br>
+        <button type="submit">Log in</button>
+    </form>
+</div>
+</body>
+<footer>
+    <div th:include="common :: footer"></div>
+</footer>
+</html>
