@@ -9,6 +9,7 @@ public class NotImplementedController {
     @GetMapping("/not-implemented")
     public String home(Authentication authentication) {
 
-        return "We're sorry, this feature is not implemented yet.";
+        return authentication.getPrincipal().toString();
+        //return "We're sorry, this feature is not implemented yet.";
     }
 }

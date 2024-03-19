@@ -1,6 +1,6 @@
 package dimi.zpo.bank3.controllers;
 
-import dimi.zpo.bank3.entities.HistoryEntry;
+import dimi.zpo.bank3.classes.HistoryEntry;
 import dimi.zpo.bank3.services.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

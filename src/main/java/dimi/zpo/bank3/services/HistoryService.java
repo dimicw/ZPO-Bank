@@ -1,7 +1,7 @@
 package dimi.zpo.bank3.services;
 
 import dimi.zpo.bank3.entities.AccountEntity;
-import dimi.zpo.bank3.entities.HistoryEntry;
+import dimi.zpo.bank3.classes.HistoryEntry;
 import dimi.zpo.bank3.entities.TransferEntity;
 import dimi.zpo.bank3.repositories.AccountRepository;
 import dimi.zpo.bank3.repositories.AccountTypeRepository;

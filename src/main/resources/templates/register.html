@@ -17,7 +17,7 @@
         <button onclick="location.href = '/register';">Register</button>
     </div>
     <div sec:authorize="isAuthenticated()">
-        <a>Welcome, <span th:text="${#authentication.name}"></span>!  </a>
+        <a>Welcome, <span th:text="${#authentication.principal.name}"></span>!  </a>
         <button onclick="location.href = '/logout';">Log out</button>
     </div>
 </div>

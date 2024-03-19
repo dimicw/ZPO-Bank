@@ -1,4 +1,4 @@
-package dimi.zpo.bank3.entities;
+package dimi.zpo.bank3.classes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
