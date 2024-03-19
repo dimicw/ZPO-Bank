@@ -1,5 +1,6 @@
 package dimi.zpo.bank3.configurations;
 
+import dimi.zpo.bank3.handlers.CustomAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -20,7 +21,10 @@ public class SecurityConfig {
                         .requestMatchers("/register", "/", "/home", "/offers/*",
                                 "/error", "/js/**", "/css/**", "/img/**").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
+                .formLogin(request -> request
+                        //.loginPage("/login")
+                        .successHandler(new CustomAuthenticationSuccessHandler())
+                        .permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
