@@ -40,10 +40,22 @@
 <!-- Registration -->
 <h2>Register</h2>
 <form action="#" th:action="@{/register}" method="post">
-    <label for="username">Username:</label><br>
+    <label for="username">Username:</label>
     <input type="text" id="username" name="username" required><br>
-    <label for="password">Password:</label><br>
+    <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br>
+    <label for="name">name:</label>
+    <input type="text" id="name" name="name" required><br>
+    <label for="surname">surname:</label>
+    <input type="text" id="surname" name="surname" required><br>
+    <label for="address">address:</label>
+    <input type="text" id="address" name="address" required><br>
+    <label for="postalCode">postal code:</label>
+    <input type="text" id="postalCode" name="postalCode" required><br>
+    <label for="email">e-mail:</label>
+    <input type="text" id="email" name="email" required><br>
+    <label for="phone">phone number:</label>
+    <input type="text" id="phone" name="phone" required><br>
     <input type="submit" value="Register">
 </form>
 </body>

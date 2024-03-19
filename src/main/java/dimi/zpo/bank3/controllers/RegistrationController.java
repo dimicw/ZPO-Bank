@@ -23,10 +23,23 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@RequestParam String username, @RequestParam String password) {
+    public String registerUser(@RequestParam String username,
+                               @RequestParam String password,
+                               @RequestParam String name,
+                               @RequestParam String surname,
+                               @RequestParam String address,
+                               @RequestParam String postalCode,
+                               @RequestParam String email,
+                               @RequestParam String phone) {
         UserEntity user = new UserEntity();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
+        user.setName(name);
+        user.setSurname(surname);
+        user.setAddress(address);
+        user.setPostalCode(postalCode);
+        user.setEmail(email);
+        user.setPhone(phone);
 
         userRepository.save(user);
 
