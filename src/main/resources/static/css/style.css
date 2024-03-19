@@ -1,3 +1,4 @@
+/* color variables */
 :root {
     --deep-sea: #11313c;
     --medium-sea: #22516b;
@@ -6,7 +7,7 @@
     --soft-mint: #e8ffe0;
 }
 
-
+/* basic settings*/
 * {
     margin: 0;
     padding: 0;
@@ -30,6 +31,15 @@ h2 {
     margin-bottom: 10px;
 }
 
+footer {
+    background-color: var(--deep-sea);
+    color: var(--steel);
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+/* buttons*/
 button {
     background-color: var(--deep-sea);
     border: none;
@@ -58,6 +68,39 @@ a.no-underline {
     text-decoration: none;
 }
 
+
+/* pagination */
+.pagination {
+    text-align: center;
+}
+
+.pagination ul > li
+{
+    display:inline-block;
+    padding:0px 10px;
+}
+
+.pagination a {
+    color: var(--deep-sea);
+    font-weight: bold;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: var(--leaf-green);
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--steel);
+}
+
+
+/* styled table */
 .styled-table {
     border-collapse: collapse;
     margin: 25px 0;
@@ -98,7 +141,7 @@ a.no-underline {
     border-bottom: 2px solid var(--deep-sea);
 }
 
-
+/* top bar */
 .top-bar {
     background-color: var(--deep-sea);
     text-align: right;
@@ -112,7 +155,7 @@ a.no-underline {
     text-align: right;
 }
 
-
+/* menu */
 .logo-menu {
     text-align: center;
     background: linear-gradient(90deg, white, var(--steel), white);
@@ -126,6 +169,7 @@ a.no-underline {
     display: block;
     margin: 0 auto;
 }
+
 
 .logo-menu h1 {
     font-size: 48px;
@@ -153,7 +197,7 @@ a.no-underline {
     font-weight: bold;
 }
 
-
+/* tiles */
 .account-tiles {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -186,7 +230,7 @@ a.no-underline {
     padding: 20px;
 }
 
-
+/* offer */
 .offer {
     display: flex;
     flex-direction: column;
@@ -207,13 +251,4 @@ a.no-underline {
     display: flex; /* Create a flex container for the image and paragraph */
     align-items: center; /* Center items horizontally */
     margin: 20px; /* Adjust spacing */
-}
-
-
-footer {
-    background-color: var(--deep-sea);
-    color: var(--steel);
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
 }

@@ -41,6 +41,24 @@
     </div>
 </div>
 
+
+<div th:fragment="pagination">
+    <!-- Pagination -->
+    <nav class="pagination">
+        <ul>
+            <li th:unless="${currentPage == 0}">
+                <a th:href="@{/history/sort_by={field}-desc={direction}(field=${field}, direction=${direction}, page=${currentPage - 1})}"><<</a>
+            </li>
+            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}">
+                <a th:href="@{/history/sort_by={field}-desc={direction}(field=${field}, direction=${direction}, page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+            </li>
+            <li th:unless="${currentPage + 1 == totalPages}">
+                <a th:href="@{/history/sort_by={field}-desc={direction}(field=${field}, direction=${direction}, page=${currentPage + 1})}">>></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
 <div th:fragment="footer" >
     <!-- Standard Company Footer -->
     <p>© 2024 SpringBank. All rights reserved.</p>

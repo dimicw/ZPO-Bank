@@ -7,6 +7,9 @@ import dimi.zpo.bank3.repositories.AccountRepository;
 import dimi.zpo.bank3.repositories.AccountTypeRepository;
 import dimi.zpo.bank3.repositories.TransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -107,6 +110,61 @@ public class HistoryService {
             }
         }
         return sortByField(entries, field, direction);
+    }
+
+    public Page<HistoryEntry> generateEntries(String field, Boolean direction, Pageable pageable) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        List<AccountEntity> accounts = accountRepository.findByOwnerId(auth.getName());
+        List<String> accountNumbers = new ArrayList<>();
+        for (AccountEntity account : accounts) accountNumbers.add(account.getNumber());
+
+        List<HistoryEntry> entries = new ArrayList<>();
+
+        for (AccountEntity account : accounts) {
+            String accountType = accountTypeRepository.findById(account.getAccountType()).get(0).getName();
+            List<TransferEntity> transfers = transferRepository.findByFromAccountOrToAccount(account.getNumber(), account.getNumber());
+
+            for (TransferEntity transfer : transfers) {
+                String type = "", fromAccount = "", toAccount = "";
+                Boolean isInternal = accountNumbers.contains(transfer.getFromAccount()) && accountNumbers.contains(transfer.getToAccount());
+
+                if (transfer.getFromAccount() == null) {
+                    type = "Deposit";
+                    fromAccount = "-";
+                    toAccount = accountType;
+                } else if (transfer.getFromAccount().equals(account.getNumber())) {
+                    fromAccount = accountType;
+
+                    if(isInternal) {
+                        for (AccountEntity account2 : accounts)
+                            if (transfer.getToAccount() != null)
+                                if (transfer.getToAccount().equals(account2.getNumber()))
+                                    toAccount = accountTypeRepository.findById(account2.getAccountType()).get(0).getName();
+                        type = "Internal transfer";
+                    } else {
+                        if (transfer.getToAccount() == null) {
+                            type = "Withdrawal";
+                            toAccount = "-";
+                        } else {
+                            type = "Outgoing transfer";
+                            toAccount = transfer.getToAccount();
+                        }
+                    }
+                } else if (!isInternal){
+                    type = "Incoming transfer";
+                    fromAccount = transfer.getFromAccount();
+                    toAccount = accountType;
+                }
+
+                if(type != "")
+                    entries.add(new HistoryEntry(transfer.getDate(), type, fromAccount, toAccount, transfer.getAmount()));
+            }
+        }
+        entries = sortByField(entries, field, direction);
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), entries.size());
+        return new PageImpl<>(entries.subList(start, end), pageable, entries.size());
     }
 
     @Autowired
