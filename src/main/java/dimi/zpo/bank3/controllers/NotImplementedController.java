@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class NotImplementedController {
     @GetMapping("/not-implemented")
     public String home() {
-
         return "We're sorry, this feature is not implemented yet.";
     }
 }
