@@ -352,6 +352,10 @@ a.no-underline {
   color: var(--medium-sea);
 }
 
+.form p {
+  color: var(--deep-sea);
+}
+
 .form button {
     margin-top: 20px;
     margin-bottom: 10px;
