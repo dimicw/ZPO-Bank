@@ -371,3 +371,8 @@ a.no-underline {
     color: var(--dark-steel);
     font-weight: bold;
 }
+
+.form .error {
+    color: red;
+    font-weight: bold;
+}
