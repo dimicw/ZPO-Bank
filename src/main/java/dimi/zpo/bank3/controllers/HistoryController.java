@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.*;
-
 @Controller
 public class HistoryController {
 
@@ -22,17 +20,6 @@ public class HistoryController {
     public RedirectView redirectToHome() {
         return new RedirectView("/history/sort_by=date-desc=true?page=0");
     }
-
-    /*@GetMapping("/history/sort_by={field}-desc={direction}")
-    public String historySorted (@PathVariable String field,
-                                 @PathVariable Boolean direction,
-                                 Model model) {
-
-        List<HistoryEntry> entries = historyService.generateEntries(field, direction);
-        model.addAttribute("entries", entries);
-
-        return "history";
-    }*/
 
     @GetMapping("/history/sort_by={field}-desc={direction}")
     public String historySorted (@PathVariable String field,
