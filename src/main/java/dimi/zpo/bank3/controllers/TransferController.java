@@ -46,7 +46,7 @@ public class TransferController {
         List<AccountEntity> toAccounts = accountRepository.findByNumber(toAccount);
 
         if (fromAccounts.isEmpty())
-            return "redirect:/transfer/failed";
+            return "redirect:/transfer/fail";
         AccountEntity fromAccountEntity = fromAccounts.get(0);
 
         if (fromAccountEntity.getBalance().compareTo(amount) >= 0) {
@@ -54,7 +54,7 @@ public class TransferController {
                 AccountEntity toAccountEntity = toAccounts.get(0);
 
                 if(toAccountEntity.getNumber() == fromAccountEntity.getNumber())
-                    return "redirect:/transfer/failed";
+                    return "redirect:/transfer/fail";
 
                 toAccountEntity.setBalance(toAccountEntity.getBalance().add(amount));
                 accountRepository.save(toAccountEntity);
