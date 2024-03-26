@@ -14,13 +14,9 @@
     <h2>Are you sure you want to open <span th:text="${type}"></span></h2>
     <hr>
     <div class="form slim">
-        <p>TODO</p>
-        <div class="center">
-            <button onclick="location.href = 'open';" class="big green">Yes, I want to open an account</button>
-        </div>
-        <div class="center">
-            <button type="cancel" onclick="location.href = '/home';">No, I don't want to open an account</button>
-        </div>
+        <button onclick="location.href = 'open';" class="big green">Yes, I want to open an account</button>
+        <p>By opening an account you agree to our <a href="/not-implemented">Terms & Conditions</a>.</p>
+        <button type="cancel" onclick="location.href = '/home';">No, I don't want to open an account</button>
     </div>
     <br><br>
 </div>
