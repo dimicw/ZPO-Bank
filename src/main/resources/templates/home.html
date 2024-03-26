@@ -11,30 +11,30 @@
 
 <!-- Offers -->
 <div class="account-tiles">
-  <a href="/offers/basic-savings" class="tile">
+  <a href="/offers/offer=basic-savings/" class="tile">
     <img src="/img/basic_savings.png" alt="Basic Savings Account Logo">
     <h2>Basic Savings</h2>
     <hr>
     <p th:if="${basicSavings == null}">Open a Basic Savings account with competitive interest rates.</p>
     <p th:unless="${basicSavings == null}" th:text="${basicSavings}">.</p>
   </a>
-  <a href="/offers/premium-checking" class="tile">
+  <a href="/offers/offer=premium-checking/" class="tile">
     <img src="/img/premium_checking.png" alt="Premium Checking Account Logo">
     <h2>Premium Checking</h2>
     <hr>
     <p th:if="${premiumChecking == null}">Get exclusive benefits with our Premium Checking account.</p>
     <p th:unless="${premiumChecking == null}" th:text="${premiumChecking}">.</p>
   </a>
-  <a href="/offers/investment-accounts" class="tile">
+  <a href="/offers/offer=investment-account/" class="tile">
     <img src="/img/investment_account.png" alt="Investment Account Logo">
-    <h2>Investment Accounts</h2>
+    <h2>Investment Account</h2>
     <hr>
     <p th:if="${investmentAccount == null}">Explore investment options tailored to your financial goals.</p>
     <p th:unless="${investmentAccount == null}" th:text="${investmentAccount}">.</p>
   </a>
-  <a href="/offers/business-accounts" class="tile">
+  <a href="/offers/offer=business-account/" class="tile">
     <img src="/img/business_accounts.png" alt="Business Account Logo">
-    <h2>Business Accounts</h2>
+    <h2>Business Account</h2>
     <hr>
     <p th:if="${businessAccount == null}">Manage your business finances efficiently with our Business accounts.</p>
     <p th:unless="${businessAccount == null}" th:text="${businessAccount}">.</p>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common :: head}">
+    <title>Open account</title>
+</head>
+<body>
+
+<!-- Top bar and menu -->
+<div th:replace="~{common :: top-bar}"></div>
+<div th:replace="~{common :: menu}"></div>
+
+<!-- Confirmation -->
+<div class="form">
+    <h2>Are you sure you want to open <span th:text="${type}"></span></h2>
+    <hr>
+    <div class="form slim">
+        <p>TODO</p>
+        <div class="center">
+            <button onclick="location.href = 'open';" class="big green">Yes, I want to open an account</button>
+        </div>
+        <div class="center">
+            <button type="cancel" onclick="location.href = '/home';">No, I don't want to open an account</button>
+        </div>
+    </div>
+    <br><br>
+</div>
+
+</body>
+<footer>
+    <div th:replace="~{common :: footer}"></div>
+</footer>
+</html>

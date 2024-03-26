@@ -4,11 +4,13 @@ import dimi.zpo.bank3.handlers.CustomAuthenticationSuccessHandler;
 import dimi.zpo.bank3.handlers.CustomLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -19,9 +21,11 @@ public class SecurityConfig {
 
         return http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/", "/home", "/offers/*", "/register",
-                                "/error", "/not-implemented",
+                        .requestMatchers("/", "/home", "/offers/*/", "/register",
+                                "/error/**", "/not-implemented/",
                                 "/js/**", "/css/**", "/img/**").permitAll()
+                        .requestMatchers(HttpMethod.POST).permitAll() // TODO
+                        .requestMatchers("/offers/*/open-account/**").authenticated()
                         .anyRequest().authenticated())
                 .formLogin(request -> request
                         .loginPage("/login")
