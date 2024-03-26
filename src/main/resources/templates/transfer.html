@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="common :: head">
+<head th:replace="~{common :: head}">
     <title>Transfer</title>
 </head>
 <body>
 
 <!-- Top bar and menu -->
-<div th:include="common :: top-bar"></div>
-<div th:include="common :: menu"></div>
+<div th:replace="~{common :: top-bar}"></div>
+<div th:replace="~{common :: menu}"></div>
 
 <!-- Transfer form -->
 <div class="form slim">
@@ -43,6 +43,6 @@
 
 </body>
 <footer>
-    <div th:include="common :: footer"></div>
+    <div th:replace="~{common :: footer}"></div>
 </footer>
 </html>

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="common :: head">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common :: head}">
     <title>Title</title>
 </head>
 <body>
 
 <!-- Top bar and menu -->
-<div th:include="common :: top-bar"></div>
-<div th:include="common :: menu"></div>
+<div th:replace="~{common :: top-bar}"></div>
+<div th:replace="~{common :: menu}"></div>
 
 <!-- Profile details-->
 <div>
@@ -23,6 +22,6 @@
 
 </body>
 <footer>
-    <div th:include="common :: footer"></div>
+    <div th:replace="~{common :: footer}"></div>
 </footer>
 </html>
