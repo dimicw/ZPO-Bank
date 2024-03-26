@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class TransferController {
@@ -42,8 +43,16 @@ public class TransferController {
     public String registerTransfer(@RequestParam String fromAccount,
                                    @RequestParam String toAccount,
                                    @RequestParam BigDecimal amount) {
+        String toAccountFormatted = toAccount
+                .replace(" ", "")
+                .replace("-", "")
+                .trim();
+
+        if (toAccountFormatted.length() != 26)
+            return "redirect:/transfer/fail";
+
         List<AccountEntity> fromAccounts = accountRepository.findByNumber(fromAccount);
-        List<AccountEntity> toAccounts = accountRepository.findByNumber(toAccount);
+        List<AccountEntity> toAccounts = accountRepository.findByNumber(toAccountFormatted);
 
         if (fromAccounts.isEmpty())
             return "redirect:/transfer/fail";
@@ -53,7 +62,7 @@ public class TransferController {
             if(!toAccounts.isEmpty()) {
                 AccountEntity toAccountEntity = toAccounts.get(0);
 
-                if(toAccountEntity.getNumber() == fromAccountEntity.getNumber())
+                if(Objects.equals(toAccountEntity.getNumber(), fromAccountEntity.getNumber()))
                     return "redirect:/transfer/fail";
 
                 toAccountEntity.setBalance(toAccountEntity.getBalance().add(amount));
@@ -63,7 +72,7 @@ public class TransferController {
             fromAccountEntity.setBalance(fromAccountEntity.getBalance().subtract(amount));
             accountRepository.save(fromAccountEntity);
 
-            transferRepository.save(new TransferEntity(fromAccount, toAccount, amount));
+            transferRepository.save(new TransferEntity(fromAccount, toAccountFormatted, amount));
 
             return "redirect:/transfer/success";
         }
