@@ -42,9 +42,32 @@ public class TransferController {
     public String registerTransfer(@RequestParam String fromAccount,
                                    @RequestParam String toAccount,
                                    @RequestParam BigDecimal amount) {
-        transferRepository.save(new TransferEntity(fromAccount, toAccount, amount));
+        List<AccountEntity> fromAccounts = accountRepository.findByNumber(fromAccount);
+        List<AccountEntity> toAccounts = accountRepository.findByNumber(toAccount);
 
-        return "redirect:/transfer/success";
+        if (fromAccounts.isEmpty())
+            return "redirect:/transfer/failed";
+        AccountEntity fromAccountEntity = fromAccounts.get(0);
+
+        if (fromAccountEntity.getBalance().compareTo(amount) >= 0) {
+            if(!toAccounts.isEmpty()) {
+                AccountEntity toAccountEntity = toAccounts.get(0);
+
+                if(toAccountEntity.getNumber() == fromAccountEntity.getNumber())
+                    return "redirect:/transfer/failed";
+
+                toAccountEntity.setBalance(toAccountEntity.getBalance().add(amount));
+                accountRepository.save(toAccountEntity);
+            }
+
+            fromAccountEntity.setBalance(fromAccountEntity.getBalance().subtract(amount));
+            accountRepository.save(fromAccountEntity);
+
+            transferRepository.save(new TransferEntity(fromAccount, toAccount, amount));
+
+            return "redirect:/transfer/success";
+        }
+        return "redirect:/transfer/fail";
     }
 
     @Autowired
