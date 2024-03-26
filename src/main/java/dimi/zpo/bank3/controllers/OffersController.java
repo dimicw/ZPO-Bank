@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 public class OffersController {
@@ -76,6 +77,11 @@ public class OffersController {
         AccountTypeEntity type = accountTypeRepository.findByName(
                 accountType.replace('-', ' ')).get(0);
 
+        List<AccountEntity> accounts = accountRepository.findByOwnerId(auth.getName());
+        for(AccountEntity account : accounts)
+            if (account.getAccountType() == type.getId())
+                return "home";
+
         AccountEntity account = new AccountEntity();
 
         account.setNumber(newAccountService.generateAccountNumber());
@@ -87,27 +93,6 @@ public class OffersController {
 
         return "home";
     }
-    /*@PostMapping("/offers/offer={accountType}/open-account")
-    public String saveaaaccount(@PathVariable String accountType) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if( accountType.replace('-', ' ').trim().equals("Basic-Savings".replace('-', ' ').trim())) System.out.println("yay");
-        else System.out.println(accountType.replace('-', ' ').trim() + "\n" + "Basic-Savings".replace('-', ' ').trim());
-        if (accountTypeRepository.findByName("basic-savings".replace('-', ' ')).isEmpty()) return "redirect:/not-implemented";
-        AccountTypeEntity type = accountTypeRepository.findByName(
-                accountType.replace('-', ' ')).get(0);
-        System.out.println(type);
-
-        AccountEntity account = new AccountEntity();
-
-        account.setNumber(newAccountService.generateAccountNumber());
-        account.setOwnerId(auth.getName());
-        account.setBalance(new BigDecimal(0));
-        account.setAccountType(type.getId());
-
-        accountRepository.save(account);
-
-        return "home";
-    }*/
 
 
     @Autowired
