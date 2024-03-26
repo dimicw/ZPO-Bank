@@ -10,13 +10,14 @@
 <div th:replace="~{common :: menu}"></div>
 
 <!-- Profile details-->
-<div>
+<div class="display">
     <h2>Profile details</h2>
+    <hr><br>
     <a>Name: <span th:text="${#authentication.principal.name}"></span></a><br>
     <a>Surname: <span th:text="${#authentication.principal.surname}"></span></a><br>
     <a>Address: <span th:text="${#authentication.principal.address}"></span></a><br>
-    <a>Postal code:: <span th:text="${#authentication.principal.postalCode}"></span></a><br>
-    <a>e-mail:: <span th:text="${#authentication.principal.email}"></span></a><br>
+    <a>Postal code: <span th:text="${#authentication.principal.postalCode}"></span></a><br>
+    <a>e-mail: <span th:text="${#authentication.principal.email}"></span></a><br>
     <a>Phone number: <span th:text="${#authentication.principal.phone}"></span></a><br>
 </div>
 

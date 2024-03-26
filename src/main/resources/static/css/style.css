@@ -272,8 +272,8 @@ a.no-underline {
 }
 
 
-/* offer */
-.offer {
+/* display */
+.display {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -282,14 +282,20 @@ a.no-underline {
     margin: 0 auto;
 }
 
-.offer p {
+.display p {
     margin: 20px;
     font-size: 26px;
     font-weight: bold;
     color: var(--deep-sea);
 }
 
-.offer .description {
+.display a {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--deep-sea);
+}
+
+.display .description {
     display: flex;
     align-items: center;
     margin: 20px;
