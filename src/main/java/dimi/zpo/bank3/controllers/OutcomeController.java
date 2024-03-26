@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ConfirmationController {
+public class OutcomeController {
     @GetMapping("/transfer/success")
     public String transferSuccess(Model model) {
         String title = "Success!";
@@ -15,7 +15,7 @@ public class ConfirmationController {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
 
-        return "confirmation";
+        return "outcome";
     }
 
     @GetMapping("/transfer/fail")
@@ -27,6 +27,6 @@ public class ConfirmationController {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
 
-        return "confirmation";
+        return "outcome";
     }
 }
