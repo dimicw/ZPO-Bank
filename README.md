@@ -46,12 +46,22 @@ CREATE TABLE account (
 );
 
 CREATE TABLE transfer (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     from_account VARCHAR(26) DEFAULT NULL,
     to_account VARCHAR(26) DEFAULT NULL,
     amount DECIMAL(10,2),
     date DATETIME DEFAULT CURRENT_TIMESTAMP()
 );
+
+CREATE USER 'bank'@'localhost' IDENTIFIED BY 'Spring-Boot';
+GRANT ALL PRIVILEGES ON spring_bank.* TO 'newuser'@'localhost';
+FLUSH PRIVILEGES;
+
+INSERT INTO account_types (name) VALUES ('Basic Savings');
+INSERT INTO account_types (name) VALUES ('Business Account');
+INSERT INTO account_types (name) VALUES ('Investment Account');
+INSERT INTO account_types (name) VALUES ('Premium Checking');
+
 ```
 
 ### Installing
