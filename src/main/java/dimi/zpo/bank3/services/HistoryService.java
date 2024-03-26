@@ -128,12 +128,12 @@ public class HistoryService {
                             toAccount = "-";
                         } else {
                             type = "Outgoing transfer";
-                            toAccount = transfer.getToAccount();
+                            toAccount = format(transfer.getToAccount());
                         }
                     }
                 } else if (!isInternal){
                     type = "Incoming transfer";
-                    fromAccount = transfer.getFromAccount();
+                    fromAccount = format(transfer.getFromAccount());
                     toAccount = accountType;
                 }
 
@@ -146,6 +146,13 @@ public class HistoryService {
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), entries.size());
         return new PageImpl<>(entries.subList(start, end), pageable, entries.size());
+    }
+
+    private String format(String number) {
+        StringBuilder outcome = new StringBuilder(number.substring(0, 2));
+        for (int i = 0; i < 6; i++)
+            outcome.append(" ").append(number.substring((i * 4) + 2, ((i + 1) * 4) + 2));
+        return outcome.toString();
     }
 
     @Autowired
